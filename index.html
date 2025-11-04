@@ -101,7 +101,7 @@
 
             .todoInp {
                 display: grid;
-                grid-template-columns: 130px 100px 90px;
+                grid-template-columns: 120px 100px 90px;
                 column-gap: 10px;
                 row-gap: 10px;
                 margin-bottom: 15px;
@@ -109,7 +109,7 @@
             }
 
             .nameInp {
-                width: 120px;
+                width: 110px;
                 border: 2px solid rgb(18, 18, 18);
                 font-size: 10px;
                 padding: 5px;
@@ -118,7 +118,7 @@
             }
 
             .dateInp {
-                width: 90px;
+                width: 80px;
                 border: 2px solid rgb(18, 18, 18);
                 font-size: 10px;
                 padding: 5px;
@@ -166,7 +166,7 @@
 </head>
 
 <body>
-    <p class="title">To-Do List</p>
+ <p class="title">To-Do List</p>
 
     <div>
         <div class="todoInp">
@@ -190,8 +190,8 @@
 
                 let todoListHTML = '';
 
-                for (let i = 0; i < todoList.length; i++) {
-                    const todoObject = todoList[i];
+                todoList.forEach(function(todoObject, index) {
+                    
                     const { name, dueDate } = todoObject;
 
                     const html = `
@@ -200,7 +200,7 @@
                 <button 
                 class="delete" 
                 onclick="
-                todoList.splice(${i}, 1);    
+                todoList.splice(${index}, 1);    
 
                 render();
 
@@ -209,10 +209,10 @@
                 ">Delete</button>
                 `;
                     todoListHTML += html;
-                }
+                });
 
                 // console.log(todoListHTML);  OPTIONAL
-
+                
                 document.querySelector('.js-todoShow')
                     .innerHTML = todoListHTML;
             }
