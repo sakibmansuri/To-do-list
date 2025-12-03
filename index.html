@@ -4,246 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To Do List</title>
-    <link rel="shortcut icon"
-        href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbrnOv1vlWpMlAwKiej-bHDRtuicZpeUDbiQ&s"
-        type="image/x-icon">
+    <link rel="stylesheet" href="To do list.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <title>To do list</title>
     <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: rgb(42, 42, 42);
-        }
 
-        .title {
-            margin: 20px 0px 20px 5px;
-            color: turquoise;
-            font-size: 30px;
-            font-weight: bold;
-            text-decoration: underline;
-        }
-
-        .todoGrid {
-            display: grid;
-            grid-template-columns: 200px 200px 100px;
-            column-gap: 10px;
-            row-gap: 10px;
-            margin-bottom: 15px;
-            align-items: center;
-        }
-
-        .todoInp {
-            display: grid;
-            grid-template-columns: 200px 200px 100px;
-            column-gap: 10px;
-            row-gap: 10px;
-            margin-bottom: 15px;
-            align-items: stretch;
-        }
-
-        .nameInp,
-        .dateInp {
-            font-size: 20px;
-            padding: 8px;
-            background-color: rgb(144, 203, 255);
-            color: rgb(17, 15, 15);
-        }
-
-        .add {
-            background: linear-gradient(to right, rgb(111, 219, 143), rgb(193, 213, 164));
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 20px;
-        }
-
-        .add:active {
-            background: darkgreen;
-            color: white;
-        }
-
-        .delete {
-            height: 45px;
-            background: linear-gradient(to right, rgb(219, 111, 111), rgb(213, 164, 164));
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 20px;
-        }
-
-        .delete:active {
-            background: rgb(100, 0, 0);
-            color: white;
-        }
-
-        .disp {
-            font-size: 25px;
-            color: white;
-            background-color: cadetblue;
-        }
-
-        @media (max-width: 425px) {
-            .title {
-                margin: 20px 0px 20px 158px;
-                color: turquoise;
-                font-size: 20px;
-                font-weight: bold;
-                text-decoration: underline;
-            }
-
-            .todoGrid {
-                display: grid;
-                grid-template-columns: 120px 100px 90px;
-                column-gap: 10px;
-                row-gap: 10px;
-                margin-bottom: 15px;
-                align-items: center;
-            }
-
-            .todoInp {
-                display: grid;
-                grid-template-columns: 120px 100px 90px;
-                column-gap: 10px;
-                row-gap: 10px;
-                margin-bottom: 15px;
-                align-items: stretch;
-            }
-
-            .nameInp {
-                width: 110px;
-                border: 2px solid rgb(18, 18, 18);
-                font-size: 10px;
-                padding: 5px;
-                background-color: rgb(144, 203, 255);
-                color: rgb(17, 15, 15);
-            }
-
-            .dateInp {
-                width: 80px;
-                border: 2px solid rgb(18, 18, 18);
-                font-size: 10px;
-                padding: 5px;
-                background-color: rgb(144, 203, 255);
-                color: rgb(17, 15, 15);
-            }
-
-            .add {
-                background: linear-gradient(to right, rgb(111, 219, 143), rgb(193, 213, 164));
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                font-size: 10px;
-            }
-
-            .add:active {
-                background: darkgreen;
-                color: white;
-            }
-
-            .delete {
-                height: 30px;
-                background: linear-gradient(to right, rgb(219, 111, 111), rgb(213, 164, 164));
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                font-size: 10px;
-            }
-
-            .delete:active {
-                background: rgb(100, 0, 0);
-                color: white;
-            }
-
-            .disp {
-                padding: 5px;
-                text-align: center left;
-                height: 30px;
-                font-size: 15px;
-                color: white;
-                background-color: cadetblue;
-            }
-        }
     </style>
 </head>
 
 <body>
- <p class="title">To-Do List</p>
+    <div class="container">
 
-    <div>
-        <div class="todoInp">
-            <input class="js-name nameInp" placeholder="Type your task">
-
-            <input class="js-dd dateInp" placeholder="Choose Time" type="date">
-
-            <button class="add" onclick="
-        addTodo();
-        ">Add</button>
+        <div class="statBox">
+            <div class="details">
+                <h1>To-do list</h1>
+                <p>Keep it up and float with me!!</p>
+                <div id="progressBar">
+                    <div id="progressLine"></div>
+                </div>
+            </div>
+            <div class="circle">
+                <p id="numbers">>_<</p>
+            </div>
         </div>
 
-        <div class="js-todoShow todoGrid"></div>
+        <div class="infoBox">
+            <form action="">
+                <input class="taskInput" type="text" placeholder="Write the tasks...">
+                <button class="newTask" type="submit">+</button>
+            </form>
 
-        <script>
-            const todoList = JSON.parse(localStorage.getItem('todoList')) || [];
+            <ul class="infoList"></ul>
+        </div>
+    </div>
+</body>
 
-            render();
-
-            function render() {
-
-                let todoListHTML = '';
-
-                todoList.forEach(function(todoObject, index) {
-                    
-                    const { name, dueDate } = todoObject;
-
-                    const html = `
-                <div class="disp">${name}</div>
-                <div class="disp">${dueDate}</div>   
-                <button 
-                class="delete" 
-                onclick="
-                todoList.splice(${index}, 1);    
-
-                render();
-
-                saveToStorage()
-
-                ">Delete</button>
-                `;
-                    todoListHTML += html;
-                });
-
-                // console.log(todoListHTML);  OPTIONAL
-                
-                document.querySelector('.js-todoShow')
-                    .innerHTML = todoListHTML;
-            }
-
-
-            function addTodo() {
-
-                const input = document.querySelector('.js-name');
-                const task = input.value;
-
-                const dateInput = document.querySelector('.js-dd');
-                const dd = dateInput.value;
-
-
-                todoList.push({
-                    name: task,
-                    dueDate: dd
-                });
-                // console.log(todoList);   OPTIONAL
-
-                input.value = '';
-
-                render();
-
-                saveToStorage();
-            }
-
-            function saveToStorage() {
-                localStorage.setItem('todoList', JSON.stringify(todoList));
-            }
-        </script>
-        </body>
+<script src="To do list.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
 
 </html>
