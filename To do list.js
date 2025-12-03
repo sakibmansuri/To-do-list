@@ -101,12 +101,8 @@ const updateTasklist = () => {
                 <p>${task.text}</p>
             </div>
             <div class="icons">
-                <span class="material-symbols-outlined edit" onclick="editTask(${index})">
-                edit
-                </span>
-                <span class="material-symbols-outlined" onclick="deleteTask(${index})">
-                delete
-                </span>
+                <span class="material-symbols-outlined edit" onclick="editTask(${index})">Edit</span>
+                <span class="material-symbols-outlined" onclick="deleteTask(${index})">Delete</span>
             </div>
         </div>
         `;
